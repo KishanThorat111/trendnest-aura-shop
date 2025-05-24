@@ -1,19 +1,25 @@
 
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Search, ShoppingCart, User, Heart, Menu, X } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Search, ShoppingCart, User, Heart, Menu, X, LogOut } from 'lucide-react';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useCart } from '../../contexts/CartContext';
 import { useWishlist } from '../../contexts/WishlistContext';
+import { useAuth } from '../../contexts/AuthContext';
+import { useSearch } from '../../contexts/SearchContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
   const { getTotalItems } = useCart();
   const { items: wishlistItems } = useWishlist();
+  const { user, logout } = useAuth();
+  const { searchQuery, setSearchQuery, performSearch } = useSearch();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navigation = [
     { name: 'Home', href: '/' },
@@ -23,6 +29,21 @@ const Navbar = () => {
   ];
 
   const isActive = (path: string) => location.pathname === path;
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      performSearch(searchQuery);
+      navigate('/search');
+    }
+  };
+
+  const handleSearchInput = (value: string) => {
+    setSearchQuery(value);
+    if (value.trim()) {
+      performSearch(value);
+    }
+  };
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -57,14 +78,16 @@ const Navbar = () => {
 
           {/* Search Bar */}
           <div className="hidden md:flex items-center space-x-4 flex-1 max-w-sm mx-8">
-            <div className="relative w-full">
+            <form onSubmit={handleSearch} className="relative w-full">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
               <Input
                 type="search"
                 placeholder="Search products..."
                 className="pl-10 bg-muted/50 border-0 focus:bg-background"
+                value={searchQuery}
+                onChange={(e) => handleSearchInput(e.target.value)}
               />
-            </div>
+            </form>
           </div>
 
           {/* Right Side Icons */}
@@ -80,7 +103,7 @@ const Navbar = () => {
             </Button>
 
             {/* Wishlist */}
-            <Link to="/wishlist" className="relative">
+            <Link to="/dashboard" className="relative">
               <Button variant="ghost" size="sm">
                 <Heart className="h-5 w-5" />
                 {wishlistItems.length > 0 && (
@@ -103,12 +126,34 @@ const Navbar = () => {
               </Button>
             </Link>
 
-            {/* User */}
-            <Link to="/dashboard">
-              <Button variant="ghost" size="sm">
-                <User className="h-5 w-5" />
-              </Button>
-            </Link>
+            {/* User Menu */}
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm">
+                    <User className="h-5 w-5" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="bg-background border border-border">
+                  <DropdownMenuItem asChild>
+                    <Link to="/dashboard" className="flex items-center">
+                      <User className="mr-2 h-4 w-4" />
+                      Dashboard
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={logout} className="flex items-center">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    Logout
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <Link to="/login">
+                <Button variant="ghost" size="sm">
+                  <User className="h-5 w-5" />
+                </Button>
+              </Link>
+            )}
 
             {/* Mobile Menu Toggle */}
             <Button
@@ -127,14 +172,16 @@ const Navbar = () => {
           <div className="md:hidden py-4 border-t border-border/40">
             <div className="flex flex-col space-y-4">
               {/* Mobile Search */}
-              <div className="relative">
+              <form onSubmit={handleSearch} className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
                   type="search"
                   placeholder="Search products..."
                   className="pl-10 bg-muted/50 border-0"
+                  value={searchQuery}
+                  onChange={(e) => handleSearchInput(e.target.value)}
                 />
-              </div>
+              </form>
 
               {/* Mobile Navigation */}
               {navigation.map((item) => (

@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/Layout/Navbar';
@@ -115,7 +114,10 @@ const ProductDetail = () => {
         name: product.name,
         price: product.price,
         image: product.images[0],
-        originalPrice: product.originalPrice
+        originalPrice: product.originalPrice,
+        category: product.category,
+        rating: product.rating,
+        reviews: product.reviews
       });
       toast.success('Added to wishlist!');
     }

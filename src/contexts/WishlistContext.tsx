@@ -7,6 +7,9 @@ interface WishlistItem {
   price: number;
   image: string;
   originalPrice?: number;
+  category: string;
+  rating?: number;
+  reviews?: number;
 }
 
 interface WishlistContextType {

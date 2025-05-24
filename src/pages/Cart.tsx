@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Layout/Navbar';
 import Footer from '../components/Layout/Footer';
 import { Button } from '@/components/ui/button';
@@ -9,10 +9,13 @@ import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import { Minus, Plus, X, ShoppingBag, ArrowRight } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
+import { useAuth } from '../contexts/AuthContext';
 import { toast } from 'sonner';
 
 const Cart = () => {
   const { items, updateQuantity, removeFromCart, getTotalPrice, getTotalItems } = useCart();
+  const { user } = useAuth();
+  const navigate = useNavigate();
 
   const handleQuantityChange = (id: string, newQuantity: number) => {
     if (newQuantity < 1) {
@@ -26,6 +29,15 @@ const Cart = () => {
   const handleRemoveItem = (id: string, name: string) => {
     removeFromCart(id);
     toast.success(`${name} removed from cart`);
+  };
+
+  const handleCheckout = () => {
+    if (!user) {
+      toast.error('Please sign in to continue');
+      navigate('/login');
+      return;
+    }
+    navigate('/checkout');
   };
 
   const subtotal = getTotalPrice();
@@ -189,6 +201,7 @@ const Cart = () => {
                 <Button 
                   size="lg" 
                   className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+                  onClick={handleCheckout}
                 >
                   Proceed to Checkout
                   <ArrowRight className="ml-2 h-5 w-5" />
