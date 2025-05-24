@@ -18,7 +18,7 @@ const Dashboard = () => {
   const user = {
     name: 'Kishan Thorat',
     email: 'kishan.thorat@example.com',
-    avatar: 'https://uploadnow.io/s/2de5b086-4300-4d49-a5af-c6b8002a88c5?o=t',
+    avatar: 'https://techtrendingnews.com/wp-content/uploads/2025/05/profile.jpg',
     memberSince: 'January 2024',
     totalOrders: 12,
     totalSpent: 2456.89,
