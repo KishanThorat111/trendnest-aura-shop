@@ -77,7 +77,7 @@ const ProductListing = () => {
       name: 'USB-C Hub',
       price: 45,
       originalPrice: 65,
-      image: 'https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?w=400&h=400&fit=crop',
+      image: 'https://techtrendingnews.com/wp-content/uploads/2025/05/profile.jpg',
       category: 'Tech',
       rating: 4.5,
       reviews: 156
@@ -87,7 +87,7 @@ const ProductListing = () => {
       name: 'Wireless Mouse',
       price: 399,
       originalPrice: 599,
-      image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=400&fit=crop',
+      image: 'https://techtrendingnews.com/wp-content/uploads/2025/05/profile.jpg',
       category: 'Tech',
       rating: 4.3,
       reviews: 245
