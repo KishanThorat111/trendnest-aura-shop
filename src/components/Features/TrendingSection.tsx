@@ -11,8 +11,8 @@ const TrendingSection = () => {
     {
       id: '1',
       name: 'Wireless Pro Earbuds',
-      price: 199,
-      originalPrice: 249,
+      price: 19999,
+      originalPrice: 24999,
       image: 'https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=400&h=400&fit=crop',
       category: 'Audio',
       rating: 4.8,
@@ -23,8 +23,8 @@ const TrendingSection = () => {
     {
       id: '2',
       name: 'Smart Fitness Watch',
-      price: 299,
-      originalPrice: 399,
+      price: 29999,
+      originalPrice: 39999,
       image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=400&fit=crop',
       category: 'Wearables',
       rating: 4.6,
@@ -34,8 +34,8 @@ const TrendingSection = () => {
     {
       id: '3',
       name: 'Minimalist Backpack',
-      price: 89,
-      originalPrice: 120,
+      price: 8999,
+      originalPrice: 12099,
       image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=400&fit=crop',
       category: 'Accessories',
       rating: 4.7,
@@ -46,8 +46,8 @@ const TrendingSection = () => {
     {
       id: '4',
       name: 'Gaming Mechanical Keyboard',
-      price: 159,
-      originalPrice: 199,
+      price: 15999,
+      originalPrice: 19999,
       image: 'https://images.unsplash.com/photo-1541140532154-b024d705b90a?w=400&h=400&fit=crop',
       category: 'Gaming',
       rating: 4.9,

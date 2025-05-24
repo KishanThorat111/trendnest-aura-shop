@@ -133,7 +133,7 @@ const Navbar = () => {
                 <DropdownMenuTrigger asChild>
                   <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full p-0">
                     <Avatar className="h-8 w-8">
-                      <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Kishan" />
+                      <AvatarImage src="https://uploadnow.io/s/2de5b086-4300-4d49-a5af-c6b8002a88c5?o=t" alt="Kishan" />
                       <AvatarFallback>K</AvatarFallback>
                     </Avatar>
                   </Button>

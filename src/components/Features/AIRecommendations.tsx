@@ -32,8 +32,8 @@ const AIRecommendations = () => {
     {
       id: '7',
       name: 'Wireless Charging Pad',
-      price: 39,
-      originalPrice: 59,
+      price: 399,
+      originalPrice: 599,
       image: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=400&fit=crop',
       category: 'Tech',
       rating: 4.4,
@@ -52,8 +52,8 @@ const AIRecommendations = () => {
       {
         id: '8',
         name: 'Bluetooth Speaker',
-        price: 89,
-        originalPrice: 119,
+        price: 8999,
+        originalPrice: 11999,
         image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=400&fit=crop',
         category: 'Audio',
         rating: 4.6,
@@ -63,8 +63,8 @@ const AIRecommendations = () => {
       {
         id: '9',
         name: 'Desk Organizer',
-        price: 29,
-        originalPrice: 39,
+        price: 299,
+        originalPrice: 399,
         image: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=400&fit=crop',
         category: 'Office',
         rating: 4.3,

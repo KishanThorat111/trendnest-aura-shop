@@ -16,9 +16,9 @@ const Dashboard = () => {
 
   // Mock user data
   const user = {
-    name: 'Alex Johnson',
-    email: 'alex.johnson@example.com',
-    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face',
+    name: 'Kishan Thorat',
+    email: 'kishan.thorat@example.com',
+    avatar: 'https://uploadnow.io/s/2de5b086-4300-4d49-a5af-c6b8002a88c5?o=t',
     memberSince: 'January 2024',
     totalOrders: 12,
     totalSpent: 2456.89,
@@ -31,21 +31,21 @@ const Dashboard = () => {
       id: 'ORD-001',
       date: '2024-05-20',
       status: 'Delivered',
-      total: 299.99,
+      total: 29999.99,
       items: 2
     },
     {
       id: 'ORD-002',
       date: '2024-05-15',
       status: 'Shipped',
-      total: 89.99,
+      total: 8999.99,
       items: 1
     },
     {
       id: 'ORD-003',
       date: '2024-05-10',
       status: 'Processing',
-      total: 199.99,
+      total: 19999.99,
       items: 1
     }
   ];
@@ -97,7 +97,7 @@ const Dashboard = () => {
                   <Package className="h-5 w-5 text-green-500" />
                   <div>
                     <p className="text-sm text-muted-foreground">Total Spent</p>
-                    <p className="text-2xl font-bold">${user.totalSpent}</p>
+                    <p className="text-2xl font-bold">₹{user.totalSpent}</p>
                   </div>
                 </div>
               </CardContent>
@@ -159,7 +159,7 @@ const Dashboard = () => {
                         </Badge>
                       </div>
                       <div className="text-right">
-                        <p className="font-semibold">${order.total}</p>
+                        <p className="font-semibold">₹{order.total}</p>
                         <p className="text-sm text-muted-foreground">{order.items} items</p>
                       </div>
                     </div>
