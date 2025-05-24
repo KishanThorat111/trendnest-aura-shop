@@ -41,8 +41,8 @@ const Cart = () => {
   };
 
   const subtotal = getTotalPrice();
-  const shipping = subtotal > 100 ? 0 : 9.99;
-  const tax = subtotal * 0.08;
+  const shipping = subtotal > 1000 ? 0 : 99;
+  const tax = subtotal * 0.18; // 18% GST
   const total = subtotal + shipping + tax;
 
   if (items.length === 0) {
@@ -51,7 +51,7 @@ const Cart = () => {
         <Navbar />
         
         <main className="container mx-auto px-4 py-16">
-          <div className="text-center max-w-md mx-auto">
+          <div className="text-center max-w-md mx-auto animate-fade-in">
             <div className="w-32 h-32 mx-auto mb-6 bg-muted/30 rounded-full flex items-center justify-center">
               <ShoppingBag className="h-16 w-16 text-muted-foreground" />
             </div>
@@ -60,7 +60,7 @@ const Cart = () => {
               Looks like you haven't added anything to your cart yet. Start shopping to fill it up!
             </p>
             <Link to="/products">
-              <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
+              <Button size="lg" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 hover:scale-105 transition-all duration-300">
                 Start Shopping
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -78,7 +78,7 @@ const Cart = () => {
       <Navbar />
       
       <main className="container mx-auto px-4 py-8">
-        <div className="mb-8">
+        <div className="mb-8 animate-fade-in">
           <h1 className="text-3xl font-bold mb-2">Shopping Cart</h1>
           <p className="text-muted-foreground">
             {getTotalItems()} {getTotalItems() === 1 ? 'item' : 'items'} in your cart
@@ -88,8 +88,12 @@ const Cart = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-4">
-            {items.map((item) => (
-              <div key={`${item.id}-${item.size}-${item.color}`} className="p-6 rounded-xl border border-border/40 bg-card">
+            {items.map((item, index) => (
+              <div 
+                key={`${item.id}-${item.size}-${item.color}`} 
+                className="p-6 rounded-xl border border-border/40 bg-card animate-fade-in hover:shadow-lg transition-all duration-300"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
                 <div className="flex gap-4">
                   {/* Product Image */}
                   <div className="w-24 h-24 rounded-lg overflow-hidden bg-muted/30 flex-shrink-0">
@@ -122,7 +126,7 @@ const Cart = () => {
                         variant="ghost"
                         size="sm"
                         onClick={() => handleRemoveItem(item.id, item.name)}
-                        className="text-muted-foreground hover:text-destructive"
+                        className="text-muted-foreground hover:text-destructive transition-colors"
                       >
                         <X className="h-4 w-4" />
                       </Button>
@@ -134,7 +138,7 @@ const Cart = () => {
                           variant="outline"
                           size="sm"
                           onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
-                          className="h-8 w-8 p-0"
+                          className="h-8 w-8 p-0 hover:scale-110 transition-transform"
                         >
                           <Minus className="h-3 w-3" />
                         </Button>
@@ -143,15 +147,15 @@ const Cart = () => {
                           variant="outline"
                           size="sm"
                           onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
-                          className="h-8 w-8 p-0"
+                          className="h-8 w-8 p-0 hover:scale-110 transition-transform"
                         >
                           <Plus className="h-3 w-3" />
                         </Button>
                       </div>
                       
                       <div className="text-right">
-                        <div className="font-bold text-lg">${(item.price * item.quantity).toFixed(2)}</div>
-                        <div className="text-sm text-muted-foreground">${item.price} each</div>
+                        <div className="font-bold text-lg">₹{(item.price * item.quantity).toLocaleString('en-IN')}</div>
+                        <div className="text-sm text-muted-foreground">₹{item.price.toLocaleString('en-IN')} each</div>
                       </div>
                     </div>
                   </div>
@@ -162,37 +166,37 @@ const Cart = () => {
 
           {/* Order Summary */}
           <div className="space-y-6">
-            <div className="p-6 rounded-xl border border-border/40 bg-card">
+            <div className="p-6 rounded-xl border border-border/40 bg-card animate-fade-in sticky top-24">
               <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
               
               <div className="space-y-3">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span>${subtotal.toFixed(2)}</span>
+                  <span>₹{subtotal.toLocaleString('en-IN')}</span>
                 </div>
                 
                 <div className="flex justify-between">
                   <span>Shipping</span>
-                  <span>${shipping.toFixed(2)}</span>
+                  <span>₹{shipping.toLocaleString('en-IN')}</span>
                 </div>
                 
                 <div className="flex justify-between">
-                  <span>Tax</span>
-                  <span>${tax.toFixed(2)}</span>
+                  <span>GST (18%)</span>
+                  <span>₹{tax.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</span>
                 </div>
                 
                 <Separator />
                 
                 <div className="flex justify-between text-lg font-semibold">
                   <span>Total</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span>₹{total.toLocaleString('en-IN', { maximumFractionDigits: 0 })}</span>
                 </div>
               </div>
 
               {shipping > 0 && (
                 <div className="mt-4 p-3 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800">
                   <p className="text-sm text-blue-700 dark:text-blue-300">
-                    💡 Add ${(100 - subtotal).toFixed(2)} more for free shipping!
+                    💡 Add ₹{(1000 - subtotal).toLocaleString('en-IN')} more for free shipping!
                   </p>
                 </div>
               )}
@@ -200,7 +204,7 @@ const Cart = () => {
               <div className="mt-6 space-y-3">
                 <Button 
                   size="lg" 
-                  className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
+                  className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 hover:scale-105 transition-all duration-300"
                   onClick={handleCheckout}
                 >
                   Proceed to Checkout
@@ -208,7 +212,7 @@ const Cart = () => {
                 </Button>
                 
                 <Link to="/products" className="block">
-                  <Button variant="outline" size="lg" className="w-full">
+                  <Button variant="outline" size="lg" className="w-full hover:scale-105 transition-transform">
                     Continue Shopping
                   </Button>
                 </Link>

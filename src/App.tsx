@@ -20,6 +20,15 @@ import Checkout from "./pages/Checkout";
 import Categories from "./pages/Categories";
 import Trending from "./pages/Trending";
 import SearchResults from "./pages/SearchResults";
+import Wishlist from "./pages/Wishlist";
+import Demo from "./pages/Demo";
+import Contact from "./pages/Contact";
+import FAQ from "./pages/FAQ";
+import Shipping from "./pages/Shipping";
+import Returns from "./pages/Returns";
+import Privacy from "./pages/Privacy";
+import Terms from "./pages/Terms";
+import Cookies from "./pages/Cookies";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -41,12 +50,21 @@ const App = () => (
                     <Route path="/product/:id" element={<ProductDetail />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/wishlist" element={<Wishlist />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/checkout" element={<Checkout />} />
                     <Route path="/categories" element={<Categories />} />
                     <Route path="/trending" element={<Trending />} />
                     <Route path="/search" element={<SearchResults />} />
+                    <Route path="/demo" element={<Demo />} />
+                    <Route path="/contact" element={<Contact />} />
+                    <Route path="/faq" element={<FAQ />} />
+                    <Route path="/shipping" element={<Shipping />} />
+                    <Route path="/returns" element={<Returns />} />
+                    <Route path="/privacy" element={<Privacy />} />
+                    <Route path="/terms" element={<Terms />} />
+                    <Route path="/cookies" element={<Cookies />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
                 </BrowserRouter>

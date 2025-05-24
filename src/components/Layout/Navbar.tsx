@@ -9,6 +9,7 @@ import { useAuth } from '../../contexts/AuthContext';
 import { useSearch } from '../../contexts/SearchContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 
 const Navbar = () => {
@@ -102,8 +103,8 @@ const Navbar = () => {
               {theme === 'light' ? '🌙' : '☀️'}
             </Button>
 
-            {/* Wishlist */}
-            <Link to="/dashboard" className="relative">
+            {/* Wishlist - Fixed to go to Wishlist page */}
+            <Link to="/wishlist" className="relative">
               <Button variant="ghost" size="sm">
                 <Heart className="h-5 w-5" />
                 {wishlistItems.length > 0 && (
@@ -130,8 +131,11 @@ const Navbar = () => {
             {user ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="sm">
-                    <User className="h-5 w-5" />
+                  <Button variant="ghost" size="sm" className="h-10 w-10 rounded-full p-0">
+                    <Avatar className="h-8 w-8">
+                      <AvatarImage src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Kishan" />
+                      <AvatarFallback>K</AvatarFallback>
+                    </Avatar>
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="bg-background border border-border">
@@ -148,11 +152,18 @@ const Navbar = () => {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Link to="/login">
-                <Button variant="ghost" size="sm">
-                  <User className="h-5 w-5" />
-                </Button>
-              </Link>
+              <div className="flex items-center space-x-2">
+                <Link to="/login">
+                  <Button variant="ghost" size="sm">
+                    Sign In
+                  </Button>
+                </Link>
+                <Link to="/register">
+                  <Button size="sm" className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
+                    Register
+                  </Button>
+                </Link>
+              </div>
             )}
 
             {/* Mobile Menu Toggle */}
@@ -196,6 +207,21 @@ const Navbar = () => {
                   {item.name}
                 </Link>
               ))}
+
+              {!user && (
+                <div className="flex flex-col space-y-2">
+                  <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+                    <Button variant="ghost" size="sm" className="w-full justify-start">
+                      Sign In
+                    </Button>
+                  </Link>
+                  <Link to="/register" onClick={() => setIsMenuOpen(false)}>
+                    <Button size="sm" className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">
+                      Register
+                    </Button>
+                  </Link>
+                </div>
+              )}
 
               <Button
                 variant="ghost"

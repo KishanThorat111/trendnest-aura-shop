@@ -57,7 +57,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) =>
         name: product.name,
         price: product.price,
         image: product.image,
-        originalPrice: product.originalPrice
+        originalPrice: product.originalPrice,
+        category: product.category,
+        rating: product.rating,
+        reviews: product.reviews
       });
       toast.success('Added to wishlist!');
     }
@@ -144,10 +147,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className = '' }) =>
           
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="font-bold text-lg">${product.price}</span>
+              <span className="font-bold text-lg">₹{product.price.toLocaleString('en-IN')}</span>
               {product.originalPrice && (
                 <span className="text-sm text-muted-foreground line-through">
-                  ${product.originalPrice}
+                  ₹{product.originalPrice.toLocaleString('en-IN')}
                 </span>
               )}
             </div>

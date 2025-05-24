@@ -16,7 +16,7 @@ const HeroSection = () => {
       <div className="absolute top-1/2 right-10 w-16 h-16 bg-gradient-to-br from-green-400 to-blue-500 rounded-full opacity-20 animate-pulse animation-delay-4000"></div>
 
       <div className="container mx-auto px-4 text-center z-10">
-        <div className="max-w-4xl mx-auto space-y-8">
+        <div className="max-w-4xl mx-auto space-y-8 animate-fade-in">
           {/* Badge */}
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 text-sm font-medium text-blue-600 dark:text-blue-400">
             🚀 AI-Powered Shopping Experience
@@ -44,7 +44,7 @@ const HeroSection = () => {
             <Link to="/products">
               <Button 
                 size="lg" 
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
                 <ShoppingCart className="mr-2 h-5 w-5" />
                 Start Shopping
@@ -52,26 +52,28 @@ const HeroSection = () => {
               </Button>
             </Link>
             
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="px-8 py-6 text-lg rounded-xl border-2 hover:bg-muted/50 transition-all duration-300"
-            >
-              Watch Demo
-            </Button>
+            <Link to="/demo">
+              <Button 
+                variant="outline" 
+                size="lg"
+                className="px-8 py-6 text-lg rounded-xl border-2 hover:bg-muted/50 transition-all duration-300 hover:scale-105"
+              >
+                Watch Demo
+              </Button>
+            </Link>
           </div>
 
           {/* Stats */}
           <div className="grid grid-cols-3 gap-8 pt-12 max-w-md mx-auto">
-            <div className="text-center">
+            <div className="text-center animate-fade-in" style={{ animationDelay: '0.2s' }}>
               <div className="text-2xl font-bold text-primary">10K+</div>
               <div className="text-sm text-muted-foreground">Products</div>
             </div>
-            <div className="text-center">
+            <div className="text-center animate-fade-in" style={{ animationDelay: '0.4s' }}>
               <div className="text-2xl font-bold text-primary">50K+</div>
               <div className="text-sm text-muted-foreground">Happy Customers</div>
             </div>
-            <div className="text-center">
+            <div className="text-center animate-fade-in" style={{ animationDelay: '0.6s' }}>
               <div className="text-2xl font-bold text-primary">99%</div>
               <div className="text-sm text-muted-foreground">Satisfaction</div>
             </div>
